@@ -6,7 +6,9 @@
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
 <body>
-
+	<?php
+		include('pp_header.html');
+	?>
 	<p>Photopony Homepage</p>
 	<?php
 		include('pp_search.php');
