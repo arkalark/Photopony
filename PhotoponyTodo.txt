@@ -1,0 +1,19 @@
+
+
+TASKS TO DO
+
+	Registration
+	Login
+	Create Thread
+		*Enter NAME
+		*Enter KEYWORDS (for searching purposes)
+		*Put in one of several predetermined BOARDS
+		*Boards:
+			Art, Games, Ponies, Random
+	Board Pages
+		*Display threads, most recent posted-in threads at top
+	Search Page
+		*Query construction
+			(searches by thread name relevance and KEYWORDS)
+		*Display results
+	MySQL Table Structure
