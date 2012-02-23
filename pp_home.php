@@ -8,10 +8,15 @@
 <body>
 	<?php
 		include('pp_header.html');
+		include('pp_db.php'); //Database connect; needs finishing
 	?>
 	<p>Photopony Homepage</p>
 	<?php
 		include('pp_search.php');
+	?>
+	
+	<?php
+		mysqli_close($db);
 	?>
 
 </body>

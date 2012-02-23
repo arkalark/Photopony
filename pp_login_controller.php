@@ -11,7 +11,13 @@
 
 	//	On failed, return to login page with
 	//	error.
+	
+	include('pp_db.php'); //Database connect.
 
+	?>
+	
+	<?php
+		mysqli_close($db);
 	?>
 
 
