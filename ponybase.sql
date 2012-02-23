@@ -38,8 +38,19 @@ CREATE TABLE IF NOT EXISTS `boards` (
 --
 
 INSERT INTO boards (id, name) VALUES
-(1, 'art');
+(NULL, 'art');
 
+
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS threads (
+	id int(11) NOT NULL AUTO_INCREMENT,
+	name varchar(20) NOT NULL,
+	piclink varchar(100) NOT NULL,
+	content blob NOT NULL,
+	board varchar(70) NOT NULL,
+	PRIMARY KEY (id)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
