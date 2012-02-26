@@ -3,33 +3,39 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-		<title>Register</title>
-		<script type="text/javascript">
+	<title>Register</title>
+	<script type="text/javascript">
 		function validate(){
-			bad="#FFCCCC";
-			good="#CCFFCC";
-			//username
+			bad="#FFCCCC"; 	//red
+			good="#CCFFCC";	//green
+			//make sure it is a valid username
 			if(((document.getElementById("username").value).replace(/^\s*((?:[\S\s]*\S)?)\s*$/, '$1').length < 3)<?php if($usernameExists){?>
-				|| (document.getElementById("username").value == "<?php echo $_POST['username'] ?>" )<?php } ?>)
-				{document.getElementById("username").style.background=bad;
-				usernameOk=false;}
-			else{
+				|| (document.getElementById("username").value == "<?php echo $_POST['username'] ?>" )<?php } ?>){
+				//invalid username
+				document.getElementById("username").style.background=bad;
+				usernameOk=false;
+			}else{
+				//valid username
 				document.getElementById("username").style.background=good;
 				usernameOk=true;
 			}
+			//make sure it is a valid password
 			if(document.getElementById("password").value.length < 4){
+				//invalid password
 				document.getElementById("password").style.background=bad;
 				passwordOk=false;
-			}
-			else{
+			}else{
+				//valid password
 				document.getElementById("password").style.background=good;
 				passwordOk=true;
 			}
+			//make sure password confirmation data is the same as password data
 			if((document.getElementById("confirmPassword").value.length < 4) || (document.getElementById("password").value != document.getElementById("confirmPassword").value)){
+				//passwords don't match up
 				document.getElementById("confirmPassword").style.background=bad;
 				confirmPasswordOk=false;
-			}
-			else{
+			}else{
+				//passwords match up
 				document.getElementById("confirmPassword").style.background=good;
 				confirmPasswordOk=true;
 			}

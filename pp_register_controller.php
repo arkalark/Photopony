@@ -1,7 +1,6 @@
 <?php if(!isset($_SESSION)){session_start();}  ?>
 <?php
 	//Input validation
-	//This MUST come before everything, including the header!
 	$errorMessage="";
 	if(strlen(trim($_POST['username'])) < 3)
 		$errorMessage=$errorMessage.'<li>Username must be at least 3 letters long</li>'."\n"; 
@@ -15,7 +14,9 @@
 	$compareQuery="SELECT username FROM users ";
 	$compareResult=mysqli_query($db, $compareQuery) or die("Error Querying Database");
 	if(!isset($checkName)) {$checkName=NULL; }
-	while($row=mysqli_fetch_array($compareResult) and $checkName!=$username){ $checkName=$row['username'];}
+	while($row=mysqli_fetch_array($compareResult) and $checkName!=$username){
+		$checkName=$row['username'];
+	}
 	//test if user exists
 	if($checkName==$username){
 		$usernameExists=true;
@@ -30,29 +31,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <?php
+	//input was validated, adding them to the database
 	$username=$_POST['username'];
-	$escapedusername=mysqli_real_escape_string($db,$username);
 	$pw=$_POST['password']; 
-	$escapedPw=mysqli_real_escape_string($db,$pw);
-	//Actually put them in the database
 	include('pp_db.php');
-	//$query= "INSERT INTO users(username,password) VALUES ('".$escapedusername."','".$escapedPw."')";
 	$query = "INSERT INTO  `photopony`.`users` (`username` ,`password`) VALUES ('".$username."','".$pw."')";
 	$result = mysqli_query($db, $query) or die("Error Querying Database");
 	mysqli_close($db);	
-	//Rather than making them click stuff, just send them to the login page!
+	//sending user to the login page
 	$nonErrorMessage="Thank you for registering.";
 	unset($errorMessage);
 	include("pp_login.php");
 ?>
-	<?php
-	 function check_input($data, $problem=''){
-		$data = trim($data);
-		$data = stripslashes($data);
-		$data = htmlspecialchars($data);
-		if ($problem && strlen($data) == 0){ show_error($problem);}
-		return $data;
-	}
+<?php
+//display the error to the user
 	function show_error($myError){ ?>
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 		<head>
@@ -68,8 +60,5 @@
     </html>
 	<?php exit();}?>
 </html>
-	<?php
-	include('pp_db.php');
-		mysqli_close($db);
-	?>
+<?php include('pp_db.php'); mysqli_close($db);?>
 	
