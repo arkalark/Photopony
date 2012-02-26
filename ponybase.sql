@@ -16,15 +16,15 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `session`
+-- Database: `photopony`
 --
 CREATE DATABASE IF NOT EXISTS photopony;
-GRANT ALL PRIVILEGES ON session.* to 'assist'@'localhost' identified by 'assist';
-USE session;
+GRANT ALL PRIVILEGES ON photopony.* to 'assist'@'localhost' identified by 'assist';
+USE photopony;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movies`
+-- Table structure for table `boards`
 --
 
 CREATE TABLE IF NOT EXISTS `boards` (
