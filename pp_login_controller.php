@@ -1,7 +1,16 @@
 
-
 	<?php
 
+<?php if(!isset($_SESSION)){session_start();}  ?>
+<?php
+	//Recieve Login Info
+	$username = $_POST['username'];
+	$pw = $_POST['password'];
+	
+	//Check login against database
+	$query= "SELECT username FROM users WHERE password = pw";
+	$result=mysqli_query($db, $query) or die ("Error Querying Database");
+	
 	//Receive login information from pp_login.php
 	//via $_POST
 
