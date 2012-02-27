@@ -39,7 +39,6 @@
 	$result = mysqli_query($db, $query) or die("Error Querying Database");
 	mysqli_close($db);	
 	//sending user to the login page
-	$nonErrorMessage="Thank you for registering.";
 	unset($errorMessage);
 	include("pp_login.php");
 ?>
