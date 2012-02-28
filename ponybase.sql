@@ -18,6 +18,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `photopony`
 --
+DROP DATABASE IF EXISTS photopony;
 CREATE DATABASE IF NOT EXISTS photopony;
 GRANT ALL PRIVILEGES ON photopony.* to 'assist'@'localhost' identified by 'assist';
 USE photopony;
@@ -31,14 +32,15 @@ CREATE TABLE IF NOT EXISTS `boards` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(70) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `boards`
 --
 
 INSERT INTO boards (id, name) VALUES
-(NULL, 'art');
+(NULL, 'art'),
+(NULL, 'pony');
 
 
 -- --------------------------------------------------------
@@ -50,7 +52,7 @@ CREATE TABLE IF NOT EXISTS threads (
 	content blob NOT NULL,
 	board varchar(70) NOT NULL,
 	PRIMARY KEY (id)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

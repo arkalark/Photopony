@@ -22,5 +22,7 @@
 		echo("$query");
 		
 		mysqli_query($db, $query) or die("Error Querying Database");
+		
+	include('pp_home.php');
 	
 	?>

@@ -6,19 +6,27 @@
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
 <body>
+<h1><p>Photopony Homepage</p></h1>
 	<?php
 		include('pp_header.html');
 		include('pp_db.php'); //Database connect; needs finishing
 		if(!isset($_SESSION)){session_start();}
-		if(isset($_SESSION['username'])){ $username = $_SESSION['username'];echo("DEVTEST: $username"); }
+		if(isset($_SESSION['username'])){ $username = $_SESSION['username'];echo("Welcome back, $username!"); }
 		
 	?>
-	<p>Photopony Homepage</p>
+	
 	<?php
 		include('pp_search.php');
 	?>
 	
+	<p>---------------------------------------------</p>
+	
 	<?php
+		include('pp_post.php');
+	?>
+	
+	<?php
+		include('pp_bottom.html');
 		mysqli_close($db);
 	?>
 

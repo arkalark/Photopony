@@ -17,38 +17,43 @@
   }
   ?>
   
-  <h1>Search</h1>
-  <p>For example, you can type 'art' or user?? </p>
-  <form method="post" action="pp_search.php">
+  <h2>Search for Stuff!</h2>
+  <p></p>
+  <form method="post" action="pp_home.php">
     <!-- <label for="username">Search:</label>
 	<input type="text" id="search" name="search" /> -->
-	<input type="text" id="searchterm" name="searchterm" />
-	<input type="text" id="board" name="board" />
-    <input type="submit" value="go" name="submit" />
+	Search for What?<input type="text" id="searchterm" name="searchterm" /> <br>
+	On What Board?
+	<select name="board">
+		<option value="art">Art</option>
+		<option value="pony">Pony</option>
+	</select><br>
+    <input type="submit" value="Search the Ponybase!" name="submit" /> <br>
   </form>
   
   <?php
-  $temp = $_POST['searchterm'];
-  echo "$temp";
+  
   if (isset($_POST['searchterm']))
   {
   	$searchterm = $_POST['searchterm'];
 	//$threads = $_POST['threads'];
 	//$users = $_POST['users'];
 	$board = $_POST['board'];
-	$threads = "";
+	$threadname = "";
 	$content = "";
+	$piclink = "";
 	
   	$query = "SELECT * FROM threads WHERE board = '$board' AND name LIKE '%$searchterm%';";
-		echo "$query";
+		//echo "$query";
   		$result = mysqli_query($db, $query)
    			or die("Error Querying Database");
-   		echo "<table id=\"hor-minimalist-b\">\n<tr><th>threads</th><th>threads</th><tr>\n\n";
+   		echo "<table border=1 id=\"hor-minimalist-b\">\n<tr><th>Thread Name</th><th>Thread Post</th><th>Picture!</th><tr>\n\n";
    		while($row = mysqli_fetch_array($result)) {
-  			$threads = $row['name'];
+  			$threadname = $row['name'];
   			$content = $row['content'];
-			
-		  	echo "<tr><td  >$threads</td><td >$content</td></tr>\n";
+			$piclink = $row['piclink'];
+		  	echo "<tr><td>$threadname</td><td>$content</td><td><img src=\"$piclink\" /></td></tr>\n";
+			//echo "DEVTEST: $piclink";
 	    }
 	    echo "</table>\n"; 
   	
@@ -56,7 +61,7 @@
   	
   
   ?>
-  <p>&nbsp;</p><p><a href="logout.php">logout</a></p>
+  
   </div>
 </body>
 </html>
