@@ -39,26 +39,8 @@
 	$result = mysqli_query($db, $query) or die("Error Querying Database");
 	mysqli_close($db);	
 	//sending user to the login page
-	$nonErrorMessage="Thank you for registering.";
 	unset($errorMessage);
 	include("pp_login.php");
 ?>
-<?php
-//display the error to the user
-	function show_error($myError){ ?>
-    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-		<head>
-			<title>Account Registration Confirmed</title>
-		</head>
-		<body>
-			<b>Please correct the following error:</b><br />
-			<?php echo $myError; ?>
-			</br>
-			</br>
-			<a href="register.php"><font color="blue">Back to Registration Page</font></a>
-		</body>
-    </html>
-	<?php exit();}?>
-</html>
-<?php include('pp_db.php'); mysqli_close($db);?>
+
 	
