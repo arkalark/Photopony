@@ -23,6 +23,7 @@
     <!-- <label for="username">Search:</label>
 	<input type="text" id="search" name="search" /> -->
 	Search for What?<input type="text" id="searchterm" name="searchterm" /> <br>
+	(Enter nothing to see the entire board)<br>
 	On What Board?
 	<select name="board">
 		<option value="art">Art</option>
@@ -47,14 +48,23 @@
 		//echo "$query";
   		$result = mysqli_query($db, $query)
    			or die("Error Querying Database");
-   		echo "<table border=1 id=\"hor-minimalist-b\">\n<tr><th>Thread Name</th><th>Thread Post</th><th>Picture!</th><tr>\n\n";
-   		while($row = mysqli_fetch_array($result)) {
-  			$threadname = $row['name'];
-  			$content = $row['content'];
-			$piclink = $row['piclink'];
-		  	echo "<tr><td>$threadname</td><td>$content</td><td><img src=\"$piclink\" /></td></tr>\n";
-			//echo "DEVTEST: $piclink";
-	    }
+   		
+		
+		if(count(mysqli_fetch_array($result))!=0){
+			$result = mysqli_query($db, $query);//temp solution, regarding some weird $result array behavior. Will look into it later
+			echo "<table border=1 id=\"hor-minimalist-b\">\n<tr><th>Thread Name</th><th>Thread Post</th><th>Picture!</th><tr>\n\n";
+			while($row = mysqli_fetch_array($result)) {
+				$threadname = $row['name'];
+				$content = $row['content'];
+				$piclink = $row['piclink'];
+				echo "<tr><td>$threadname</td><td>$content</td><td><img src=\"$piclink\" /></td></tr>\n";
+				//echo "DEVTEST: $piclink";
+			}
+		}
+		else
+		{
+			echo "We couldn't find anything for $searchterm under the $board board! Sorry!<br>";
+		}
 	    echo "</table>\n"; 
   	
   	}

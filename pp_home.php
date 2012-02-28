@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
 <body>
+<!--<img src="manesix.jpg"/>-->
 <h1><p>Photopony Homepage</p></h1>
 	<?php
 		include('pp_header.html');
