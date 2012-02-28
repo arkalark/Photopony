@@ -1,6 +1,7 @@
 
 	<?php
 	include('pp_db.php');
+	include('pp_header.html');
 	?>
 
 <html>

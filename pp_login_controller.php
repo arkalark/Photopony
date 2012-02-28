@@ -1,7 +1,8 @@
 <?php if(!isset($_SESSION)){session_start();}  ?>
 <?php
 	//Connect to the Database
-	include('pp_db.php'); 
+	include('pp_db.php');
+		
 	//Recieve Login Info
 	$username = $_POST['username'];
 	$pw = $_POST['password'];	

@@ -9,6 +9,9 @@
 	<?php
 		include('pp_header.html');
 		include('pp_db.php'); //Database connect; needs finishing
+		if(!isset($_SESSION)){session_start();}
+		if(isset($_SESSION['username'])){ $username = $_SESSION['username'];echo("DEVTEST: $username"); }
+		
 	?>
 	<p>Photopony Homepage</p>
 	<?php
