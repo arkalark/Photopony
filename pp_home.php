@@ -15,22 +15,18 @@
 		if(isset($_SESSION['username'])){ $username = $_SESSION['username'];echo("Welcome back, $username!"); }
 		
 	?>
-	
-	<?php
-		include('pp_search.php');
-	?>
-	
-	<p>---------------------------------------------</p>
-	
+	<br><br>
 	<?php
 		include('pp_post.php');
 	?>
-	
+	<?php
+	//<p>---------------------------------------------</p>
+		include('pp_search.php');
+	?>
+
+</body>
 	<?php
 		include('pp_bottom.html');
 		mysqli_close($db);
 	?>
-
-</body>
-
 </html>

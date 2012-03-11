@@ -67,4 +67,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `username` varchar(12) NOT NULL,
+  `thread` varchar(20) NOT NULL,
+  `comment` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

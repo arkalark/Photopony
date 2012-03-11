@@ -43,13 +43,29 @@
 	$threadname = "";
 	$content = "";
 	$piclink = "";
-	
-  	$query = "SELECT * FROM threads WHERE board = '$board' AND name LIKE '%$searchterm%';";
+	$namequery = "SELECT * FROM threads WHERE board = '$board' AND name LIKE '%$searchterm%';";
+	$result=mysqli_query($db, $namequery) or die("Error Querying Database");
+	//BEGIN printing links
+	//if(count(mysqli_fetch_array($result))==0){
+
+	if(count(mysqli_fetch_array($result))==0){
+		echo "We couldn't find anything for $searchterm under the $board board! Sorry!<br>"; 
+	}else{
+		$result=mysqli_query($db, $namequery) or die("Error Querying Database");
+		echo "<table align=left>\n";
+		while($row=mysqli_fetch_array($result)){
+			$name = $row['name'];
+			echo "<tr><td><a href=\"pp_viewthread.php?thread=$name\">$name</a></td></tr>\n";
+		}
+		echo "</table>\n";
+	}
+	//END printing links
+  	
+	/*$query = "SELECT * FROM threads WHERE board = '$board' AND name LIKE '%$searchterm%';";
 		//echo "$query";
   		$result = mysqli_query($db, $query)
    			or die("Error Querying Database");
    		
-		
 		if(count(mysqli_fetch_array($result))!=0){
 			$result = mysqli_query($db, $query);//temp solution, regarding some weird $result array behavior. Will look into it later
 			echo "<table border=1 id=\"hor-minimalist-b\">\n<tr><th>Thread Name</th><th>Thread Post</th><th>Picture!</th><tr>\n\n";
@@ -66,7 +82,7 @@
 			echo "We couldn't find anything for $searchterm under the $board board! Sorry!<br>";
 		}
 	    echo "</table>\n"; 
-  	
+  	*/
   	}
   	
   
