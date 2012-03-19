@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS threads (
 	content blob NOT NULL,
 	board varchar(70) NOT NULL,
 	PRIMARY KEY (id)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -74,8 +74,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 CREATE TABLE IF NOT EXISTS `comments` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(12) NOT NULL,
-  `thread` varchar(20) NOT NULL,
-  `comment` blob NOT NULL
+  `thread` int(11) NOT NULL,
+  `comment` blob NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`thread`) REFERENCES threads(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

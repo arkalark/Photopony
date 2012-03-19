@@ -23,7 +23,7 @@
 	$threadname = "";
 	$content = "";
 	$piclink = "";
-	$query = "SELECT * FROM threads WHERE name = '$searchterm'";
+	$query = "SELECT * FROM threads WHERE id = '$searchterm'";
 		//echo "$query";
   		$result = mysqli_query($db, $query)
    			or die("Error Querying Database");

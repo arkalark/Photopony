@@ -55,7 +55,8 @@
 		echo "<table align=left>\n";
 		while($row=mysqli_fetch_array($result)){
 			$name = $row['name'];
-			echo "<tr><td><a href=\"pp_viewthread.php?thread=$name\">$name</a></td></tr>\n";
+			$id = $row['id'];
+			echo "<tr><td><a href=\"pp_viewthread.php?thread=$id\">$name</a></td></tr>\n";
 		}
 		echo "</table>\n";
 	}
