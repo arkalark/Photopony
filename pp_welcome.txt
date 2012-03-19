@@ -1,0 +1,35 @@
+<p><a href="pp_home.php">Home</a> || <a href="pp_login.php">Login</a> || <a href="pp_register.php">Register</a> || <a href="pp_logout.php">Logout</a></a></p>
+
+<!doctype html>
+<html lang="en" class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Photopony is a place to post and comment. As long as you aren't a creeper. " />
+		<title>WELCOME TO PHOTOPONY</title>
+		<link rel="stylesheet" href="/2011/css/reset.css" media="screen">
+		<link rel="stylesheet" href="/2011/css/styles.css" media="screen">
+		<script src="http://use.typekit.com/oxg4psy.js"></script>
+		<script>try{Typekit.load();}catch(e){}</script>
+		<script src="/javascript/modernizr-1.5.min.js"></script>
+	</head>
+
+	<body>
+		
+		<!-- Start Container -->
+		<div id="container" class="vcard">
+		
+			<section id="intro">
+				<h1><img class="fn" src="IMAGEGOESHERE" alt="Photopony"></h1>
+				<p class="note"><span class="role">Posting site</span> </p>
+			</section>
+			
+			<section id="blurb">
+				<p>The best and least creepy image forum! </p>
+				<p>The least number of murderers use us! </p>
+			</section>
+			
+		
+	</body>
+
+</html>
