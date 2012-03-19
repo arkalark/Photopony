@@ -29,18 +29,17 @@ USE photopony;
 --
 
 CREATE TABLE IF NOT EXISTS `boards` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(70) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `boards`
 --
 
-INSERT INTO boards (id, name) VALUES
-(NULL, 'art'),
-(NULL, 'pony');
+INSERT INTO boards (name) VALUES
+('art'),
+('pony');
 
 
 -- --------------------------------------------------------
@@ -81,4 +80,33 @@ CREATE TABLE IF NOT EXISTS `comments` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`thread`) REFERENCES threads(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `keywordXthread',
+-- junction for threads to keywords
+--
+
+CREATE TABLE IF NOT EXISTS `keywordXthread` (
+  `thread_id` int(12) NOT NULL,
+  `kw_id` int(12) NOT NULL,
+  PRIMARY KEY (`thread_id`, `kw_id`),
+  FOREIGN KEY (thread_id) REFERENCES threads(id)
+	ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (kw_id) REFERENCES keywords(id)
+	ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE IF NOT EXISTS `keywords` (
+`id` int(12) NOT NULL AUTO_INCREMENT,
+  `keyword` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 

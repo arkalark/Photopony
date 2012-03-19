@@ -26,6 +26,8 @@
 	<?php
 		if(isset($_SESSION['username'])){
 	?>
+	
+	
 	<form method="post" action="pp_post_controller.php">
 	<label for="username"><font size=4><b>Post a New Thread</b></font></label><br>
 	Choose a board, enter a thread title, and enter some content!<br>
@@ -41,6 +43,8 @@
 	</textarea><br>
 	<input type="submit" value="Post!" name="submit" />
 	</form>
+	
+	
 	<?php
 		}
 		else{

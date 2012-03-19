@@ -43,8 +43,21 @@
 	$threadname = "";
 	$content = "";
 	$piclink = "";
-	$namequery = "SELECT * FROM threads WHERE board = '$board' AND name LIKE '%$searchterm%';";
+	
+	//Find the keyword id of the keyword matching the searchterm.
+	$keyword_q = mysqli_query($db, "SELECT * FROM keywords WHERE keyword = '$searchterm'") or die ("DEV: Keyword query failure");
+	if(count(mysqli_fetch_array($keyword_q))!=0){
+		$keyword = $keyword_q['id'];
+	}
+	else{
+		echo "DEV: Keyword not found!";
+	}
+	//End keyword id find
+	
+	$namequery = "SELECT * FROM threads as t INNER JOIN keywordXthread AS kXt ON t.id = kXt.thread_id AND kXt.thread_id = '$keyword' OR t.name LIKE '%$searchterm%';"
+	// Old Simple Working Query; $namequery = "SELECT * FROM threads WHERE board = '$board' AND name LIKE '%$searchterm%';";
 	$result=mysqli_query($db, $namequery) or die("Error Querying Database");
+	
 	//BEGIN printing links
 	//if(count(mysqli_fetch_array($result))==0){
 
