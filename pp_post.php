@@ -32,6 +32,7 @@
 	<label for="username"><font size=4><b>Post a New Thread</b></font></label><br>
 	Choose a board, enter a thread title, and enter some content!<br>
 	Picture Link: <input type="text" id="link" name="link" /><br> 
+	Keyword Tag: <input type="text" id="keyword" name="keyword" /><br> 
 	<?php //<input type="file" id="link" name="link"/><br>?>
 	<select name="board">
 		<option value="art">Art</option>
