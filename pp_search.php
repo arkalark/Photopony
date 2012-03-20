@@ -78,10 +78,13 @@
 	
 	//if(count(mysqli_fetch_array($result))==0){
 	//BEGIN printing links
-
+	
+	
+	
 	if(count(mysqli_fetch_array($result))==0){
 		echo "We couldn't find anything for $searchterm under the $board board! Sorry!<br>"; 
 	}else{
+		echo "Here's the threads we found for $searchterm<br>";
 		$result=mysqli_query($db, $namequery) or die("Error Querying Database");
 		echo "<table align=left>\n";
 		while($row=mysqli_fetch_array($result)){
