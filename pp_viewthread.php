@@ -12,6 +12,7 @@
 <div id="contents">
   <?php
   include('pp_db.php');
+  	include('pp_header.html');
   
   if (isset($_SESSION['users'])){
   echo "<p> Hi, ". $_SESSION['users'] . "</p>";

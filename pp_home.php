@@ -19,6 +19,7 @@
 	<?php
 		include('pp_post.php');
 	?>
+	
 	<?php
 	//<p>---------------------------------------------</p>
 		include('pp_search.php');
@@ -26,6 +27,11 @@
 
 </body>
 	<?php
+	if (isset($namequery)){
+		echo "<br><br><b><font size=2>Database Queries for this search:</b><br> $keyword_q_save -- Used to get a matching keyword id if your search term matches an existing keyword.
+		<br> $namequery --The actual query to get your threads.";
+		//From pp_search.php for Sprint 2
+		}
 		include('pp_bottom.html');
 		mysqli_close($db);
 	?>
