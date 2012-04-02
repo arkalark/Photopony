@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS threads (
 	piclink varchar(100) NOT NULL,
 	content blob NOT NULL,
 	board varchar(70) NOT NULL,
+	rating int(11) NOT NULL,
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

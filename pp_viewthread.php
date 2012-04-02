@@ -38,13 +38,30 @@
 				$piclink = $row['piclink'];
 				echo "<tr><td>$threadname</td><td>$content</td><td><img src=\"$piclink\" /></td></tr>\n";
 			}
+			
 		}
 		else
 		{
 			echo "We couldn't find anything for $searchterm under the $board board! Sorry!<br>";
 		}
 	    echo "</table>\n"; 
+		include('pp_vote.php');
 		
+			$query = "SELECT * FROM threads WHERE id = '$searchterm'";
+		//echo "$query";
+  		$result = mysqli_query($db, $query)
+   			or die("Error Querying Database");
+   		
+		if(count(mysqli_fetch_array($result))!=0){
+			$result = mysqli_query($db, $query);//temp solution, regarding some weird $result array behavior. Will look into it later
+			echo "<table align=left frame = border rules=all border=1 cellpadding=5>\n<tr><th>Thread Likes</th><tr>\n\n";
+			while($row = mysqli_fetch_array($result)) {
+				$rating = $row['rating'];
+				echo "<tr><td>$rating</td></tr>\n";
+			}
+			echo "</table></p>\n";
+			echo "<br><br>";
+		}
 		include('pp_comment.php');
 		$thread=mysqli_real_escape_string($db, $_GET['thread']);
 			$query="SELECT username,comment FROM comments WHERE thread = '".$thread."'"; 
