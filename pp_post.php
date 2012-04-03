@@ -1,4 +1,3 @@
-
 	<?php
 	//include('pp_db.php');
 	//include('pp_header.html');
@@ -36,7 +35,11 @@
 	<?php //<input type="file" id="link" name="link"/><br>?>
 	<select name="board">
 		<option value="art">Art</option>
+		<option value="food">Food</option>
+		<option value="fun">Fun</option>
+		<option value="random">Random</option>
 		<option value="pony">Pony</option>
+		<option value="science">Science</option>
 	</select>
     <input type="text" id="title" name="title"/><br>
 	<textarea name="content" cols="40" rows="5">
