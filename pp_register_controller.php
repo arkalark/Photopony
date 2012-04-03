@@ -34,13 +34,16 @@
 	//input was validated, adding them to the database
 	$username=$_POST['username'];
 	$pw=$_POST['password']; 
-	$passwordHash = sha1($pw['password']);
+	$passwordHash = sha1($pw);
 	include('pp_db.php');
-	$query = "INSERT INTO  `photopony`.`users` (`username` ,`password`) VALUES ('".$username."','".$passwordHash."')";
+	$query = "INSERT INTO  `photopony`.`users` (`username` ,`password`) VALUES ('$username','$passwordHash')";
 	$result = mysqli_query($db, $query) or die("Error Querying Database");
 	mysqli_close($db);	
 	//sending user to the login page
 	unset($errorMessage);
+	
+	//echo("DEV reg_con : $pw and $passwordHash");
+	
 	include("pp_login.php");
 ?>
 

@@ -33,6 +33,10 @@
 	On What Board?
 	<select name="board">
 		<option value="art">Art</option>
+		<option value="food">Food</option>
+		<option value="fun">Fun</option>
+		<option value="random">Random</option>
+		<option value="science">Science</option>
 		<option value="pony">Pony</option>
 	</select><br>
     <input type="submit" value="Search the Ponybase!" name="submit" /> <br>
@@ -72,7 +76,9 @@
 	// GOOD $namequery = "SELECT * FROM threads WHERE board='$board' AND name LIKE '%$searchterm%';";
 	// GOOD $namequery = "SELECT * FROM threads INNER JOIN keywordXthread AS kXt ON kXt.kw_id = $keyword AND threads.board='$board';";
 	
-	$namequery = "SELECT name, id FROM threads WHERE board='$board' AND name LIKE '%$searchterm%' 
+	
+	//$namequery = "SELECT name, id FROM threads WHERE board='$board' AND name LIKE '%$searchterm%' 
+	$namequery = "SELECT name, id FROM threads WHERE name IN (SELECT name FROM threads WHERE board='$board') AND name LIKE '%$searchterm%'
 		UNION SELECT name, id FROM threads INNER JOIN keywordXthread AS kXt ON kXt.kw_id = $keyword AND threads.board='$board';";
 	$result=mysqli_query($db, $namequery) or die("Error Querying Database");
 	

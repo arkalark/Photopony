@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS threads (
 INSERT INTO threads (id, name, piclink, content, board) VALUES (NULL, 'Mona Lisa', 'http://www.ibiblio.org/wm/paint/auth/vinci/joconde/joconde.jpg', 'This is a link to the mona lisa!', 'art');
 INSERT INTO threads (id,name, piclink, content,board) VALUES (NULL, 'Starry Night', 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/300px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg', 'This is a link to Starry Night', 'art');
 
+CREATE INDEX board_index ON threads (board);
 
 -- --------------------------------------------------------
 
@@ -72,12 +73,13 @@ INSERT INTO threads (id,name, piclink, content,board) VALUES (NULL, 'Starry Nigh
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(12) NOT NULL,
-  `password` varchar(12) NOT NULL,
+  `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-INSERT INTO `users` (id,username,password) VALUES (1,'admin','password');
-INSERT INTO `users` (id,username,password) VALUES (2,'guest','computer');
+INSERT INTO `users` (id,username,password) VALUES (1,'admin', sha1('password'));
+INSERT INTO `users` (id,username,password) VALUES (2,'guest', sha1('computer'));
 
+CREATE INDEX user_index ON users (username);
 
 -- --------------------------------------------------------
 
