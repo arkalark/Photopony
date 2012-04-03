@@ -12,7 +12,7 @@
 	$check = sha1('aaaa');
 	echo "$check"; */
 	//Check login against database
-	$query= "SELECT * FROM users WHERE username = '$username' AND password = '$pwHash'";
+	$query= "SELECT * FROM users WHERE username = '$username' AND password = '$pwHash';";
 	$result=mysqli_query($db, $query) or die ("Error Querying Database");
 	echo "LOGIN QUERY: $query";
 	if ($row = mysqli_fetch_array($result)){

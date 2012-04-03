@@ -51,18 +51,12 @@ INSERT INTO boards (name) VALUES
 CREATE TABLE IF NOT EXISTS threads (
 	id int(11) NOT NULL AUTO_INCREMENT,
 	name varchar(20) NOT NULL,
-	piclink varchar(100) NOT NULL,
+	piclink varchar(200) NOT NULL,
 	content blob NOT NULL,
-	board varchar(70) NOT NULL,
 	rating int(11) NOT NULL,
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-
-INSERT INTO threads (id, name, piclink, content, board) VALUES (NULL, 'Mona Lisa', 'http://www.ibiblio.org/wm/paint/auth/vinci/joconde/joconde.jpg', 'This is a link to the mona lisa!', 'art');
-INSERT INTO threads (id,name, piclink, content,board) VALUES (NULL, 'Starry Night', 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/300px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg', 'This is a link to Starry Night', 'art');
-
-CREATE INDEX board_index ON threads (board);
 
 -- --------------------------------------------------------
 
@@ -90,10 +84,8 @@ CREATE INDEX user_index ON users (username);
 CREATE TABLE IF NOT EXISTS `comments` (
 `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(12) NOT NULL,
-  `thread` int(11) NOT NULL,
   `comment` blob NOT NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`thread`) REFERENCES threads(id)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -125,3 +117,37 @@ CREATE TABLE IF NOT EXISTS `keywords` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `commentXthread` (
+  `thread_id` int(12) NOT NULL,
+  `comment_id` int(12) NOT NULL,
+  PRIMARY KEY (`thread_id`, `comment_id`),
+  FOREIGN KEY (thread_id) REFERENCES threads(id)
+	ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (comment_id) REFERENCES comments(id)
+	ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `threadXboard` (
+  `thread_id` int(12) NOT NULL,
+  `board_name` varchar(70) NOT NULL,
+  PRIMARY KEY (`thread_id`, `board_name`),
+  FOREIGN KEY (thread_id) REFERENCES threads(id)
+	ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (board_name) REFERENCES board(name)
+	ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
+INSERT INTO threads (id, name, piclink, content, rating) VALUES (NULL, 'Mona Lisa', 'http://www.ibiblio.org/wm/paint/auth/vinci/joconde/joconde.jpg', 'This is a link to the mona lisa!', 0);
+INSERT INTO threadXboard (thread_id, board_name) VALUES (1, 'art');
+INSERT INTO threads (id, name, piclink, content, rating) VALUES (NULL, 'Starry Night', 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/300px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg', 'This is a link to Starry Night', 0);
+INSERT INTO threadXboard (thread_id, board_name) VALUES (2, 'art');
+INSERT INTO threads (id, name, piclink, content, rating) VALUES (NULL, 'Derpy Hooves', 'http://i0.kym-cdn.com/photos/images/original/000/122/118/1291021351967.png?1305073935', 'Derp derp', 0);
+INSERT INTO threadXboard (thread_id, board_name) VALUES (3, 'pony');
+INSERT INTO threads (id, name, piclink, content, rating) VALUES (NULL, 'faster!', 'http://img.ponibooru.org/_images/46d129ff01bcaf8cd118a41d32c4c6a0/155646%20-%20artist%3Akarzahnii%20derpy_hooves%20twilight_sparkle.png', 'fastest pony', 0);
+INSERT INTO threadXboard (thread_id, board_name) VALUES (4, 'random');

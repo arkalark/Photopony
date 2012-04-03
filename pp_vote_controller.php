@@ -14,6 +14,7 @@
 	$result = mysqli_query($db, $query) or die("Error Querying Database");
 	mysqli_close($db);
 	echo "<tr><td><a href=\"pp_viewthread.php?thread=$thread\">Your vote has been counted!</a></td></tr>\n";
+	echo "<br><b>Your Vote Query:</b> $query";
 ?>
 
 	

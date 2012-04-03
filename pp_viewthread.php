@@ -64,7 +64,10 @@
 		}
 		include('pp_comment.php');
 		$thread=mysqli_real_escape_string($db, $_GET['thread']);
-			$query="SELECT username,comment FROM comments WHERE thread = '".$thread."'"; 
+			//$query="SELECT username,comment FROM comments WHERE thread = '".$thread."'";
+			
+			$query="SELECT c.username, c.comment FROM comments AS c INNER JOIN commentXthread AS cXt ON c.id=cXt.comment_id AND cXt.thread_id=$thread;";
+			
 			$result=mysqli_query($db, $query) or die("Error Querying Database");
 			//Print the results
 			if(count(mysqli_fetch_array($result))!=0){
@@ -78,6 +81,10 @@
 			echo "</table></p>\n";
 			}else{ //to display a message if there isn't any
 				echo "<br>Be the first to comment on this thread!<br>";
+			}
+			
+			if (isset($query)){
+				echo "<b>Your Comment Query:</b> $query";
 			}
 	?>
   

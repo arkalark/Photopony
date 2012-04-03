@@ -78,9 +78,15 @@
 	
 	
 	//$namequery = "SELECT name, id FROM threads WHERE board='$board' AND name LIKE '%$searchterm%' 
-	$namequery = "SELECT name, id FROM threads WHERE name IN (SELECT name FROM threads WHERE board='$board') AND name LIKE '%$searchterm%'
-		UNION SELECT name, id FROM threads INNER JOIN keywordXthread AS kXt ON kXt.kw_id = $keyword AND threads.board='$board';";
-	$result=mysqli_query($db, $namequery) or die("Error Querying Database");
+	//$namequery = "SELECT name, id FROM threads WHERE name IN (SELECT name FROM threads WHERE board='$board') AND name LIKE '%$searchterm%'
+	$namequery = "SELECT t.name, t.id FROM threads AS t INNER JOIN threadXboard AS tXb 
+			ON t.name LIKE '%$searchterm%' AND tXb.thread_id=t.id AND tXb.board_name='$board';";
+		/*UNION <-- Keyword Search Borked
+		SELECT t.name, t.id FROM threads as t INNER JOIN
+		(SELECT t.name, t.id FROM threads AS t INNER JOIN keywordXthread AS kXt ON kXt.thread_id=t.id AND kXt.kw_id=$keyword) AS q
+		ON q.name LIKE '%$searchterm%' AND q.board_name='$board' AND t.id=q.id;";*/
+		//UNION SELECT t.name, t.id FROM threads AS t INNER JOIN keywordXthread AS kXt ON kXt.kw_id=$keyword AND threads.board='$board';";
+	$result=mysqli_query($db, $namequery) or die("Error Querying Database: $namequery");
 	
 	//if(count(mysqli_fetch_array($result))==0){
 	//BEGIN printing links
@@ -88,9 +94,16 @@
 	
 	
 	if(count(mysqli_fetch_array($result))==0){
-		echo "We couldn't find anything for $searchterm under the $board board! Sorry!<br>"; 
+		echo "We couldn't find anything for <i>$searchterm</i> under the <b>$board</b> board! Sorry!<br>"; 
 	}else{
-		echo "Here's the threads we found for $searchterm<br>";
+		echo "Here's the threads we found for <i>$searchterm</i>";
+		if ($searchterm==""){
+			echo " the whole <b>$board</b> board!";
+		}
+		else {
+			echo " in the <b>$board</b> board.";
+		}
+		echo"<br>";
 		$result=mysqli_query($db, $namequery) or die("Error Querying Database");
 		echo "<table align=left>\n";
 		while($row=mysqli_fetch_array($result)){
