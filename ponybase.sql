@@ -57,6 +57,8 @@ CREATE TABLE IF NOT EXISTS threads (
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+CREATE INDEX thread_index ON threads (name);
+
 
 -- --------------------------------------------------------
 

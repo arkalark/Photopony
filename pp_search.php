@@ -22,8 +22,8 @@
 	1. In the first box, enter a term to search for. <br>
 	2. Choose a board to search on. You'll only get results from this board.<br>
 	3. Press Search The Ponybase!<br>
-	4. The site will search both in thread titles and thread keywords to find you a match for your search term.<br>
-	It will search for your term anywhere in the thread title, but must be an exact match for any thread keyword.
+	4. The site will search both in thread titles and thread keywords* to find you a match for your search term.<br>
+	It will search for your term anywhere in the thread title, but must be an exact match for any thread keyword.<br>
   <p></p>
   <form method="post" action="pp_home.php">
     <!-- <label for="username">Search:</label>
